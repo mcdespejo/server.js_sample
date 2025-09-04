@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Welcome to My Node.js Server</title>
+    <title>File Uploaded Successfully!</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         body {
@@ -40,28 +40,6 @@
         a:hover {
             text-decoration: underline;
         }
-        form {
-            margin-top: 2em;
-            background: rgba(255,255,255,0.1);
-            padding: 1em;
-            border-radius: 8px;
-            display: inline-block;
-        }
-        input[type="file"] {
-            margin-bottom: 1em;
-        }
-        input[type="submit"] {
-            background: #ffd700;
-            color: #333;
-            border: none;
-            padding: 0.5em 1.5em;
-            border-radius: 4px;
-            font-size: 1em;
-            cursor: pointer;
-        }
-        input[type="submit"]:hover {
-            background: #ffe066;
-        }
         @media (max-width: 600px) {
             .container {
                 padding: 1rem;
@@ -74,19 +52,8 @@
 </head>
 <body>
     <div class="container">
-        <h1>🚀 Welcome! 🚀</h1>
-        <p>This is my <strong>Node.js</strong> server.</p>
-        <p>Kindly upload any file of your choosing for testing.</p>
-        <p>
-            <a href="https://github.com/mcdespejo/server.js_sample/tree/main/public" target="_blank">GitHub Repository</a>
-        </p>
-        <form action="/upload" method="post" enctype="multipart/form-data">
-            <h2>Upload a file</h2>
-            <input type="file" name="file" required>
-            <br><br>
-            <input type="submit" value="Upload">
-            <p style="font-size:0.9em;color:#ffd700;">Allowed: png, jpg, jpeg, gif, pdf, txt</p>
-        </form>
+        <h2>File uploaded successfully!</h2>
+        <p>Your file has been Uploaded Thank you!</p>
+        <a href="/">Go back</a>
     </div>
 </body>
-</html>

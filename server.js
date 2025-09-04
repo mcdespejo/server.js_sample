@@ -58,7 +58,6 @@ function handleUpload(req, res) {
         return;
     }
 
-    // Parse multipart form data manually (simple implementation)
     let data = '';
     req.setEncoding('binary');
     req.on('data', chunk => {
@@ -77,33 +76,30 @@ function handleUpload(req, res) {
 
         for (let part of parts) {
             if (part.indexOf('Content-Disposition') !== -1) {
-                // Extract filename
                 const filenameMatch = part.match(/filename="(.+?)"/);
                 if (!filenameMatch) continue;
                 let filename = path.basename(filenameMatch[1]);
                 const ext = path.extname(filename).toLowerCase();
 
-                // Validate file extension
                 if (!ALLOWED_EXTENSIONS.includes(ext)) {
                     res.writeHead(400, { 'Content-Type': 'text/html' });
                     res.end('<h1>400 - Invalid file type</h1>');
                     return;
                 }
 
-                // Extract file data
                 const fileDataStart = part.indexOf('\r\n\r\n') + 4;
                 const fileDataEnd = part.lastIndexOf('\r\n');
                 const fileData = part.substring(fileDataStart, fileDataEnd);
 
-                // Save file
                 const savePath = path.join(uploadsDir, filename);
                 fs.writeFile(savePath, fileData, 'binary', err => {
                     if (err) {
                         res.writeHead(500, { 'Content-Type': 'text/html' });
                         res.end('<h1>500 - Error saving file</h1>');
                     } else {
-                        res.writeHead(200, { 'Content-Type': 'text/html' });
-                        res.end(`<h1>File uploaded successfully!</h1><a href="/">Go back</a>`);
+                        // Redirect to success page
+                        res.writeHead(302, { 'Location': '/upload-success.html' });
+                        res.end();
                     }
                 });
                 return;
